@@ -1,0 +1,30 @@
+
+<div class="d-flex justify-content-center">
+    <img src="assets/img/logo.png" class="img-logo">
+</div>
+
+<br>
+<div class="row d-flex justify-content-center">
+    <input class="form-control col-sm-12 col-md-6" type="search" placeholder="Search Pokemon" aria-label="Search" (keyup)="searchPokemon(searchValue.value)" #searchValue>
+</div>
+<br>
+
+<hr>
+
+<div class="row row-cols-1 row-cols-md-3">
+    <div class="col mb-4" *ngFor="let pokemon of pokemons">
+      <div class="card cardHover" (click)="getPokemon(pokemon.url)">
+            <div class="card-header d-flex justify-content-between cardHeaderStyle">
+                <span>{{ pokemon.name | firstLetterUpper }}</span>
+                <span>#{{ pokemon.url | pokemonUrlId }}</span>
+            </div>
+            <div class="card-body">
+                <img src="{{ pokemon.name | pokemonImage }}" class="card-img-top" class="img-pokemon">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="pokemons.length === 0">
+    <h2 class="text-center">No Results</h2>
+</div>
